@@ -21,7 +21,7 @@ const Header = ({ history }) => {
 		<div className={classes.root}>
 			<AppBar position='static' color='default'>
 				<Toolbar>
-					<Typography variant='h5' className={classes.title}>
+					<Typography variant='h4' className={classes.title}>
 						CoronaVirus Counter
 					</Typography>
 					<div>
