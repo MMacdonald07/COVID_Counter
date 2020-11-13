@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import numeral from 'numeral';
 import moment from 'moment';
 import Header from './Header';
 import Typography from '@material-ui/core/Typography';
@@ -52,9 +53,9 @@ const Home = () => {
 			<TableCell component='th' scope='row'>
 				{name}
 			</TableCell>
-			<TableCell align='right'>{confirmed}</TableCell>
-			<TableCell align='right'>{deaths}</TableCell>
-			<TableCell align='right'>{recovered}</TableCell>
+			<TableCell align='center'>{numeral(confirmed).format('0,0')}</TableCell>
+			<TableCell align='center'>{numeral(deaths).format('0,0')}</TableCell>
+			<TableCell align='center'>{numeral(recovered).format('0,0')}</TableCell>
 		</TableRow>
 	);
 
@@ -64,13 +65,13 @@ const Home = () => {
 			{countryData && globalData ? (
 				<>
 					<Typography variant='h5' color='initial'>
-						As of {time}, the total number of coronavirus cases is {globalData.TotalConfirmed}.
+						As of {time}, the total number of coronavirus cases is {numeral(globalData.TotalConfirmed).format('0,0')}.
 					</Typography>
 					<Typography variant='h6' color='initial'>
-						Deaths: {globalData.TotalDeaths}
+						Deaths: {numeral(globalData.TotalDeaths).format('0,0')}
 					</Typography>
 					<Typography variant='h6' color='initial'>
-						Recovered: {globalData.TotalRecovered}
+						Recovered: {numeral(globalData.TotalRecovered).format('0,0')}
 					</Typography>
 
 					<TextField label='Country' variant='standard' onChange={e => setFilter(e.target.value)} />
@@ -80,9 +81,9 @@ const Home = () => {
 							<TableHead>
 								<TableRow>
 									<TableCell>Country</TableCell>
-									<TableCell align='right'>Confirmed Cases</TableCell>
-									<TableCell align='right'>Total Deaths</TableCell>
-									<TableCell align='right'>Total Recovered</TableCell>
+									<TableCell align='center'>Confirmed Cases</TableCell>
+									<TableCell align='center'>Total Deaths</TableCell>
+									<TableCell align='center'>Total Recovered</TableCell>
 								</TableRow>
 							</TableHead>
 							<TableBody>
@@ -94,7 +95,9 @@ const Home = () => {
 					</TableContainer>
 				</>
 			) : (
-				<CircularProgress />
+				<>
+					<CircularProgress />
+				</>
 			)}
 		</div>
 	);
