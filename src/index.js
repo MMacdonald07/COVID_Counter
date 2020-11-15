@@ -8,12 +8,10 @@ import App from './App';
 const history = createBrowserHistory();
 
 ReactDOM.render(
-	<React.StrictMode>
-		<Router history={history}>
-			<CssBaseline>
-				<App />
-			</CssBaseline>
-		</Router>
-	</React.StrictMode>,
+	<Router history={history}>
+		<CssBaseline>
+			<App />
+		</CssBaseline>
+	</Router>,
 	document.getElementById('root')
 );
