@@ -15,7 +15,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { CircularProgress, MenuItem } from '@material-ui/core';
+import { CircularProgress, IconButton, MenuItem } from '@material-ui/core';
+import { Clear } from '@material-ui/icons';
 
 const StyledTableCell = withStyles(theme => ({
 	head: {
@@ -134,7 +135,16 @@ const Home = () => {
 					</div>
 
 					<div className={classes.data}>
-						<TextField label='Country' variant='standard' className={classes.input} onChange={e => setFilter(e.target.value)} />
+						<TextField
+							label='Country'
+							variant='standard'
+							value={filter}
+							className={classes.input}
+							onChange={e => setFilter(e.target.value)}
+						/>
+						<IconButton onClick={() => setFilter('')}>
+							<Clear />
+						</IconButton>
 						<div className={classes.input}>
 							<InputLabel shrink id='sort-by'>
 								Sort by
