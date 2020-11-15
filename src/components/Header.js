@@ -10,8 +10,18 @@ const useStyles = makeStyles({
 	root: {
 		flexGrow: 1
 	},
+	appBar: {
+		paddingBottom: '0.5rem',
+		width: '100%'
+	},
 	title: {
-		flexGrow: 1
+		flexGrow: 1,
+		paddingTop: '0.25rem',
+		paddingLeft: '3rem'
+	},
+	navButtons: {
+		paddingRight: '3rem',
+		paddingTop: '0.25rem'
 	}
 });
 
@@ -19,12 +29,12 @@ const Header = ({ history }) => {
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
-			<AppBar position='static' color='default'>
+			<AppBar position='static' color='inherit' className={classes.appBar}>
 				<Toolbar>
 					<Typography variant='h4' className={classes.title}>
-						CoronaVirus Counter
+						<strong>CoronaVirus Counter</strong>
 					</Typography>
-					<div>
+					<div className={classes.navButtons}>
 						<Button variant='text' color='default' onClick={() => history.push('/')}>
 							Home
 						</Button>

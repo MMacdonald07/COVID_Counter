@@ -9,7 +9,6 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
-import TablePagination from '@material-ui/core/TablePagination';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -31,14 +30,25 @@ const StyledTableCell = withStyles(theme => ({
 
 const useStyles = makeStyles({
 	title: {
-		textAlign: 'center'
+		margin: '2rem 0 1rem 8rem'
+	},
+	titleInfo: {
+		margin: '0 0 3rem 8rem'
+	},
+	input: {
+		marginLeft: '8rem',
+		paddingBottom: '2rem'
+	},
+	select: {
+		marginLeft: '8rem'
 	},
 	tableContainer: {
-		padding: '5rem 0',
+		padding: '5vh 0',
 		marginBottom: '5rem',
 		minWidth: 650,
 		maxWidth: '75vw',
-		margin: '0 auto'
+		margin: '0 auto',
+		backgroundColor: '#c8c8c8'
 	},
 	table: {
 		minWidth: 650,
@@ -52,8 +62,6 @@ const Home = () => {
 	const [countryData, setCountryData] = useState({});
 	const [filter, setFilter] = useState('');
 	const [sortType, setSortType] = useState('name');
-	const [page, setPage] = useState(0);
-	const [rowsPerPage, setRowsPerPage] = useState(10);
 	const classes = useStyles();
 	const time = moment().format('MMMM Do YYYY, h:mm:ss a');
 
@@ -97,15 +105,6 @@ const Home = () => {
 		sortArray(sortType);
 	}, [sortType]);
 
-	const handleChangePage = (e, newPage) => {
-		setPage(newPage);
-	};
-
-	const handleChangeRowsPerPage = e => {
-		setRowsPerPage(+e.target.value);
-		setPage(0);
-	};
-
 	const getTableRow = ({ name, confirmed, deaths, recovered }) => (
 		<TableRow hover key={name}>
 			<TableCell component='th' scope='row'>
@@ -123,53 +122,51 @@ const Home = () => {
 			{countryData && globalData ? (
 				<>
 					<Typography variant='h5' color='initial' className={classes.title}>
-						As of {time} GMT, there have been {numeral(globalData.TotalConfirmed).format('0,0')} confirmed coronavirus cases.
+						As of {time} GMT, there have been {numeral(globalData.TotalConfirmed).format('0,0')} confirmed coronavirus cases
+						worldwide.
 					</Typography>
-					<Typography variant='h6' color='initial'>
-						Deaths: {numeral(globalData.TotalDeaths).format('0,0')}
-					</Typography>
-					<Typography variant='h6' color='initial'>
-						Recovered: {numeral(globalData.TotalRecovered).format('0,0')}
-					</Typography>
+					<div className={classes.titleInfo}>
+						<Typography variant='h6' color='initial'>
+							Deaths: {numeral(globalData.TotalDeaths).format('0,0')}
+						</Typography>
+						<Typography variant='h6' color='initial'>
+							Recovered: {numeral(globalData.TotalRecovered).format('0,0')}
+						</Typography>
+					</div>
 
-					<TextField label='Country' variant='standard' onChange={e => setFilter(e.target.value)} />
-					<InputLabel shrink id='sort-by'>
-						Sort by
-					</InputLabel>
-					<Select labelId='sort-by' id='sort-by' value={sortType} onChange={e => setSortType(e.target.value)}>
-						<MenuItem value='name'>Name</MenuItem>
-						<MenuItem value='confirmed'>Confirmed</MenuItem>
-						<MenuItem value='deaths'>Deaths</MenuItem>
-						<MenuItem value='recovered'>Recovered</MenuItem>
-					</Select>
-					<Paper color='black' className={classes.tableContainer}>
-						<TableContainer component={Paper} className={classes.table}>
-							<Table>
-								<TableHead>
-									<TableRow>
-										<StyledTableCell>Country</StyledTableCell>
-										<StyledTableCell align='center'>Confirmed Cases</StyledTableCell>
-										<StyledTableCell align='center'>Total Deaths</StyledTableCell>
-										<StyledTableCell align='center'>Total Recovered</StyledTableCell>
-									</TableRow>
-								</TableHead>
-								<TableBody>
-									{Object.values(countryData)
-										.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-										.map(country => country.name.toLowerCase().includes(filter.toLowerCase()) && getTableRow(country))}
-								</TableBody>
-							</Table>
-							<TablePagination
-								rowsPerPageOptions={[10, 25, 100]}
-								component='div'
-								count={Object.values(countryData).length}
-								rowsPerPage={rowsPerPage}
-								page={page}
-								onChangePage={handleChangePage}
-								onChangeRowsPerPage={handleChangeRowsPerPage}
-							/>
-						</TableContainer>
-					</Paper>
+					<div className={classes.data}>
+						<TextField label='Country' variant='standard' className={classes.input} onChange={e => setFilter(e.target.value)} />
+						<div className={classes.select}>
+							<InputLabel shrink id='sort-by'>
+								Sort by
+							</InputLabel>
+							<Select labelId='sort-by' id='sort-by' value={sortType} onChange={e => setSortType(e.target.value)}>
+								<MenuItem value='name'>Name</MenuItem>
+								<MenuItem value='confirmed'>Confirmed</MenuItem>
+								<MenuItem value='deaths'>Deaths</MenuItem>
+								<MenuItem value='recovered'>Recovered</MenuItem>
+							</Select>
+						</div>
+						<Paper color='black' className={classes.tableContainer}>
+							<TableContainer component={Paper} className={classes.table}>
+								<Table>
+									<TableHead>
+										<TableRow>
+											<StyledTableCell>Country</StyledTableCell>
+											<StyledTableCell align='center'>Confirmed Cases</StyledTableCell>
+											<StyledTableCell align='center'>Total Deaths</StyledTableCell>
+											<StyledTableCell align='center'>Total Recovered</StyledTableCell>
+										</TableRow>
+									</TableHead>
+									<TableBody>
+										{Object.values(countryData).map(
+											country => country.name.toLowerCase().includes(filter.toLowerCase()) && getTableRow(country)
+										)}
+									</TableBody>
+								</Table>
+							</TableContainer>
+						</Paper>
+					</div>
 				</>
 			) : (
 				<>
