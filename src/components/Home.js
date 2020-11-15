@@ -39,20 +39,19 @@ const useStyles = makeStyles({
 		marginLeft: '8rem',
 		paddingBottom: '2rem'
 	},
-	select: {
-		marginLeft: '8rem'
-	},
 	tableContainer: {
 		padding: '5vh 0',
 		marginBottom: '5rem',
 		minWidth: 650,
 		maxWidth: '75vw',
+		maxHeight: '60vh',
 		margin: '0 auto',
 		backgroundColor: '#c8c8c8'
 	},
 	table: {
 		minWidth: 650,
 		maxWidth: '90%',
+		maxHeight: '50vh',
 		margin: '0 auto'
 	}
 });
@@ -106,7 +105,7 @@ const Home = () => {
 	}, [sortType]);
 
 	const getTableRow = ({ name, confirmed, deaths, recovered }) => (
-		<TableRow hover key={name}>
+		<TableRow hover tabIndex={-1} key={name}>
 			<TableCell component='th' scope='row'>
 				{name}
 			</TableCell>
@@ -136,7 +135,7 @@ const Home = () => {
 
 					<div className={classes.data}>
 						<TextField label='Country' variant='standard' className={classes.input} onChange={e => setFilter(e.target.value)} />
-						<div className={classes.select}>
+						<div className={classes.input}>
 							<InputLabel shrink id='sort-by'>
 								Sort by
 							</InputLabel>
@@ -149,7 +148,7 @@ const Home = () => {
 						</div>
 						<Paper color='black' className={classes.tableContainer}>
 							<TableContainer component={Paper} className={classes.table}>
-								<Table>
+								<Table stickyHeader>
 									<TableHead>
 										<TableRow>
 											<StyledTableCell>Country</StyledTableCell>
