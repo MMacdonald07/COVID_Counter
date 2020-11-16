@@ -30,11 +30,14 @@ const StyledTableCell = withStyles(theme => ({
 }))(TableCell);
 
 const useStyles = makeStyles({
+	container: {
+		minWidth: 530
+	},
 	title: {
 		margin: '3vh 0 2vh 5vw'
 	},
 	titleInfo: {
-		margin: '0 0 2vh 5vw'
+		margin: '0 0 1vh 5vw'
 	},
 	input: {
 		marginLeft: '5vw',
@@ -42,7 +45,7 @@ const useStyles = makeStyles({
 	},
 	tableContainer: {
 		padding: '5vh 0',
-		marginBottom: '20vh',
+		marginBottom: '8vh',
 		minWidth: 530,
 		maxWidth: '75vw',
 		maxHeight: '60vh',
@@ -117,10 +120,10 @@ const Home = () => {
 	);
 
 	return (
-		<div>
+		<div className={classes.container}>
 			<Header />
 			{countryData && globalData ? (
-				<>
+				<div>
 					<Typography variant='h5' color='initial' className={classes.title}>
 						As of {time} GMT, there have been {numeral(globalData.TotalConfirmed).format('0,0')} confirmed coronavirus cases
 						worldwide.
@@ -176,7 +179,7 @@ const Home = () => {
 							</TableContainer>
 						</Paper>
 					</div>
-				</>
+				</div>
 			) : (
 				<>
 					<CircularProgress />

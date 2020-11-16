@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 		paddingLeft: '1.5vw'
 	},
 	navButtons: {
-		paddingRight: '1.5vw',
+		paddingRight: '1vw',
 		paddingTop: '1vh'
 	}
 });
