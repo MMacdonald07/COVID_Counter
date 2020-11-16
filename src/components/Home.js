@@ -40,6 +40,7 @@ const useStyles = makeStyles({
 		marginLeft: '8rem',
 		paddingBottom: '2rem'
 	},
+	clearFilter: {},
 	tableContainer: {
 		padding: '5vh 0',
 		marginBottom: '5rem',
@@ -142,7 +143,7 @@ const Home = () => {
 							className={classes.input}
 							onChange={e => setFilter(e.target.value)}
 						/>
-						<IconButton onClick={() => setFilter('')}>
+						<IconButton edge='start' className={classes.clearFilter} onClick={() => setFilter('')}>
 							<Clear />
 						</IconButton>
 						<div className={classes.input}>
