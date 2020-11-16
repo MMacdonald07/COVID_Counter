@@ -31,27 +31,26 @@ const StyledTableCell = withStyles(theme => ({
 
 const useStyles = makeStyles({
 	title: {
-		margin: '2rem 0 1rem 8rem'
+		margin: '3vh 0 2vh 5vw'
 	},
 	titleInfo: {
-		margin: '0 0 3rem 8rem'
+		margin: '0 0 2vh 5vw'
 	},
 	input: {
-		marginLeft: '8rem',
-		paddingBottom: '2rem'
+		marginLeft: '5vw',
+		paddingBottom: '2vh'
 	},
-	clearFilter: {},
 	tableContainer: {
 		padding: '5vh 0',
-		marginBottom: '5rem',
-		minWidth: 650,
+		marginBottom: '20vh',
+		minWidth: 530,
 		maxWidth: '75vw',
 		maxHeight: '60vh',
 		margin: '0 auto',
 		backgroundColor: '#c8c8c8'
 	},
 	table: {
-		minWidth: 650,
+		minWidth: 400,
 		maxWidth: '90%',
 		maxHeight: '50vh',
 		margin: '0 auto'
@@ -143,7 +142,7 @@ const Home = () => {
 							className={classes.input}
 							onChange={e => setFilter(e.target.value)}
 						/>
-						<IconButton edge='start' className={classes.clearFilter} onClick={() => setFilter('')}>
+						<IconButton edge='start' onClick={() => setFilter('')}>
 							<Clear />
 						</IconButton>
 						<div className={classes.input}>

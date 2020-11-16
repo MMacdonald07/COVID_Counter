@@ -11,17 +11,22 @@ const useStyles = makeStyles({
 		flexGrow: 1
 	},
 	appBar: {
-		paddingBottom: '0.5rem',
+		paddingBottom: '2vh',
+		margin: '0 auto',
+		minWidth: 530
+	},
+	toolBar: {
+		margin: '0 auto',
 		width: '100%'
 	},
 	title: {
 		flexGrow: 1,
-		paddingTop: '0.25rem',
-		paddingLeft: '3rem'
+		paddingTop: '1vh',
+		paddingLeft: '1.5vw'
 	},
 	navButtons: {
-		paddingRight: '3rem',
-		paddingTop: '0.25rem'
+		paddingRight: '1.5vw',
+		paddingTop: '1vh'
 	}
 });
 
@@ -29,8 +34,8 @@ const Header = ({ history }) => {
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
-			<AppBar position='static' color='inherit' className={classes.appBar}>
-				<Toolbar>
+			<AppBar position='sticky' color='inherit' className={classes.appBar}>
+				<Toolbar className={classes.toolBar}>
 					<Typography variant='h4' className={classes.title}>
 						<strong>CoronaVirus Counter</strong>
 					</Typography>

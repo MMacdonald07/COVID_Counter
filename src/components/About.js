@@ -5,10 +5,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
 	container: {
-		margin: '2rem 0 0 4.5rem'
+		margin: '8vh 0 0 3vw'
 	},
 	text: {
-		marginBottom: '1rem'
+		marginBottom: '2vh'
 	},
 	link: {
 		textDecoration: 'none',
