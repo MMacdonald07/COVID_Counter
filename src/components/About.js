@@ -5,7 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
 	container: {
-		margin: '8vh 0 0 3vw'
+		margin: '4vh 0 0 3vw',
+		minWidth: 510
 	},
 	text: {
 		marginBottom: '2vh'
@@ -14,6 +15,9 @@ const useStyles = makeStyles({
 		textDecoration: 'none',
 		color: 'green',
 		'&:hover': {
+			borderBottom: '2px solid green'
+		},
+		'&:focus': {
 			borderBottom: '2px solid green'
 		}
 	}
